@@ -2,12 +2,12 @@ FROM openjdk:jre-alpine
 
 RUN apk add --update unzip wget coreutils bash
 
-ENV SPARK_VERSION 2.2.0
+ENV SPARK_VERSION 2.2.1
 ENV SPARK_PACKAGE spark-${SPARK_VERSION}-bin-hadoop2.7
 ENV SPARK_HOME /opt/spark-${SPARK_VERSION}
 ENV PATH $PATH:${SPARK_HOME}/bin
 
-RUN mkdir /opt && wget -q "http://d3kbcqa49mib13.cloudfront.net/${SPARK_PACKAGE}.tgz" -O "/tmp/${SPARK_PACKAGE}.tgz" \
+RUN mkdir /opt && wget -q "https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/${SPARK_PACKAGE}.tgz" -O "/tmp/${SPARK_PACKAGE}.tgz" \
   && tar xfz /tmp/${SPARK_PACKAGE}.tgz -C /opt \
   && mv /opt/$SPARK_PACKAGE $SPARK_HOME \
   && rm /tmp/${SPARK_PACKAGE}.tgz
